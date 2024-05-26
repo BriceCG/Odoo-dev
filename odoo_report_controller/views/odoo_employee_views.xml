@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="odoo_employee_form" model="ir.ui.view">
+            <field name="name">odoo.employee.form</field>
+            <field name="model">odoo.employee</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="button_box">
+                            <field name="image" widget="image" />
+                        </div>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="email" />
+                            <field name="date_of_birth" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="odoo_employee_action" model="ir.actions.act_window">
+            <field name="name">Employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">odoo.employee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="employee_main_menu" action="odoo_employee_action" sequence="6" />
+    </data>
+</odoo>
