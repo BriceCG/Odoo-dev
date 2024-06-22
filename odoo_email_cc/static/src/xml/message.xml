@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="mail.MessageInherit" t-inherit="mail.Message" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('o_Message_header')]" position="after">
+            <t t-if="email_cc">
+                CC: <t t-esc="email_cc" />
+            </t>
+        </xpath>
+    </t>
+</templates>
