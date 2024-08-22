@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="web_layout" inherit_id="web.layout">
+            <xpath expr="//head" position="inside">
+                <script type="text/javascript" src="/product_file_preview/static/src/js/pdf.js"/>
+                <script type="text/javascript" src="/product_file_preview/static/src/js/pdf.worker.js"/>
+            </xpath>
+        </template>
+        <template id="website_sale_product" inherit_id="website_sale.product">
+            <xpath expr="//div[@id='product_option_block']" position="after">
+                <div id="product_preview">
+                    <form>
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <button class="btn website_preview_pdf" t-att-product-id="product.id">Preview File</button>
+                    </form>
+                </div>
+                <iframe target="_pdf_preview_canvas" src="" height="300px" width="100%" >
+                    <html>
+                        <head>
+                            <title>Pdf</title>
+                        </head>
+                        <body>
+                            Test
+                        </body>
+                    </html>
+                </iframe>
+                <canvas id="canvas_pdf" name="_pdf_preview_canvas"></canvas>
+
+            </xpath>
+        </template>
+    </data>
+</odoo>
