@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_members_search" model="ir.ui.view">
+           <field name="name">view.members.search</field>
+           <field name="model">members</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" string="Nom" filter_domain="[('name', 'ilike', self)]"/>
+                    <filter name="status" string="Aucun" domain="[('status', '=', 'none')]" />
+                    <filter name="status" string="En vie" domain="[('status', '=', 'alive')]" />
+                    <filter name="status" string="Mort" domain="[('status', '=', 'dead')]" />
+                    <filter name="gender" string="Homme" domain="[('gender', '=', 'male')]" />
+                    <filter name="gender" string="Femme" domain="[('gender', '=', 'female')]" />
+		    <filter name="years" string="Ancienneté supérieur à 10" domain="[('years','>=', 10)]" />
+                </search>
+           </field>
+        </record>
+
+        <record id="view_members_tree" model="ir.ui.view">
+            <field name="name">view.members.tree</field>
+            <field name="model">members</field>
+            <field name="arch" type="xml">
+                <tree string="" editable="bottom" default_order="name">
+                    <field name="name" required="1"/>
+                    <field name="status" required="1" />
+                    <field name="gender" required="1" />
+ 	                <field name="has_photo" required="1" />
+                    <field name="years" required="1" />
+                    <field name="member_group_id" readonly="1" />
+                    <field name="group_date" />
+                    <button name="unlink" type="object" icon="fa-times" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_members_view" model="ir.actions.act_window">
+            <field name="name">Membres</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">members</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+
+              </p><p>
+
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="member_main_menu" name="Membres"  />
+        <menuitem id="member_menu" parent="member_main_menu" name="Membres" action="action_members_view" sequence="1" />
+    </data>
+</odoo>

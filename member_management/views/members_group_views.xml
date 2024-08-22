@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="members_group_search" model="ir.ui.view">
+           <field name="name">members.group.search</field>
+           <field name="model">members.group</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" string="Nom" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="member_ids" string="Membres" filter_domain="[('member_ids', 'ilike', self)]"  />
+                </search>
+           </field>
+        </record>
+
+        <record id="members_group_tree" model="ir.ui.view">
+            <field name="name">members.group.tree</field>
+            <field name="model">members.group</field>
+            <field name="arch" type="xml">
+                <tree string="" editable="bottom">
+                    <field name="name" required="1"/>
+                    <field name="date" />
+                    <field name="member_ids" widget="many2many_tags" domain="[('member_group_id', '=', False)]"/>
+                    <button name="unlink" type="object" icon="fa-times" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="members_group_action" model="ir.actions.act_window">
+            <field name="name">Groupes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">members.group</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+        <menuitem id="members_group" name="Groupes" parent="member_main_menu" sequence="2" action="members_group_action" />
+    </data>
+</odoo>
